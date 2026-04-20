@@ -10,85 +10,80 @@
     <div class="container">
         <header>
             <h1>Macro Menu Matcher</h1>
-            <p class="subtitle">Enter your nutrition targets and find fast food that fits.</p>
+            <p class="subtitle">Set a minimum or maximum for each macro, then find fast food that fits.</p>
         </header>
 
         <main>
             <form id="macro-form">
                 <div class="filters-grid">
 
-                    <div class="filter-card">
-                        <h2>Calories <span class="unit">kcal</span></h2>
-                        <div class="range-inputs">
-                            <label>
-                                <span>Min</span>
-                                <input type="number" id="kcal-min" min="0" max="5000" placeholder="e.g. 400">
-                            </label>
-                            <span class="separator">–</span>
-                            <label>
-                                <span>Max</span>
-                                <input type="number" id="kcal-max" min="0" max="5000" placeholder="e.g. 700">
-                            </label>
+                    <div class="filter-card" data-macro="kcal">
+                        <div class="card-header">
+                            <h2>Calories <span class="unit">kcal</span></h2>
+                            <div class="mode-toggle">
+                                <button type="button" class="mode-btn active" data-mode="min">Min</button>
+                                <button type="button" class="mode-btn" data-mode="max">Max</button>
+                            </div>
+                        </div>
+                        <div class="slider-row">
+                            <input type="range" class="slider" min="0" max="1000" step="10" value="0">
+                            <span class="slider-value">—</span>
                         </div>
                     </div>
 
-                    <div class="filter-card">
-                        <h2>Protein <span class="unit">g</span></h2>
-                        <div class="range-inputs">
-                            <label>
-                                <span>Min</span>
-                                <input type="number" id="protein-min" min="0" max="200" placeholder="e.g. 30">
-                            </label>
-                            <span class="separator">–</span>
-                            <label>
-                                <span>Max</span>
-                                <input type="number" id="protein-max" min="0" max="200" placeholder="">
-                            </label>
+                    <div class="filter-card" data-macro="protein">
+                        <div class="card-header">
+                            <h2>Protein <span class="unit">g</span></h2>
+                            <div class="mode-toggle">
+                                <button type="button" class="mode-btn active" data-mode="min">Min</button>
+                                <button type="button" class="mode-btn" data-mode="max">Max</button>
+                            </div>
+                        </div>
+                        <div class="slider-row">
+                            <input type="range" class="slider" min="0" max="60" step="1" value="0">
+                            <span class="slider-value">—</span>
                         </div>
                     </div>
 
-                    <div class="filter-card">
-                        <h2>Carbohydrates <span class="unit">g</span></h2>
-                        <div class="range-inputs">
-                            <label>
-                                <span>Min</span>
-                                <input type="number" id="carbs-min" min="0" max="500" placeholder="">
-                            </label>
-                            <span class="separator">–</span>
-                            <label>
-                                <span>Max</span>
-                                <input type="number" id="carbs-max" min="0" max="500" placeholder="e.g. 60">
-                            </label>
+                    <div class="filter-card" data-macro="carbs">
+                        <div class="card-header">
+                            <h2>Carbohydrates <span class="unit">g</span></h2>
+                            <div class="mode-toggle">
+                                <button type="button" class="mode-btn active" data-mode="min">Min</button>
+                                <button type="button" class="mode-btn" data-mode="max">Max</button>
+                            </div>
+                        </div>
+                        <div class="slider-row">
+                            <input type="range" class="slider" min="0" max="80" step="1" value="0">
+                            <span class="slider-value">—</span>
                         </div>
                     </div>
 
-                    <div class="filter-card">
-                        <h2>Fat <span class="unit">g</span></h2>
-                        <div class="range-inputs">
-                            <label>
-                                <span>Min</span>
-                                <input type="number" id="fat-min" min="0" max="200" placeholder="">
-                            </label>
-                            <span class="separator">–</span>
-                            <label>
-                                <span>Max</span>
-                                <input type="number" id="fat-max" min="0" max="200" placeholder="e.g. 25">
-                            </label>
+                    <div class="filter-card" data-macro="fat">
+                        <div class="card-header">
+                            <h2>Fat <span class="unit">g</span></h2>
+                            <div class="mode-toggle">
+                                <button type="button" class="mode-btn active" data-mode="min">Min</button>
+                                <button type="button" class="mode-btn" data-mode="max">Max</button>
+                            </div>
+                        </div>
+                        <div class="slider-row">
+                            <input type="range" class="slider" min="0" max="60" step="1" value="0">
+                            <span class="slider-value">—</span>
                         </div>
                     </div>
 
-                    <div class="filter-card">
-                        <h2>Fibre <span class="unit">g</span></h2>
-                        <div class="range-inputs">
-                            <label>
-                                <span>Min</span>
-                                <input type="number" id="fibre-min" min="0" max="100" placeholder="e.g. 5">
-                            </label>
-                            <span class="separator">–</span>
-                            <label>
-                                <span>Max</span>
-                                <input type="number" id="fibre-max" min="0" max="100" placeholder="">
-                            </label>
+                    <div class="filter-card" data-macro="fibre">
+                        <div class="card-header">
+                            <h2>Fibre <span class="unit">g</span></h2>
+                            <div class="mode-toggle">
+                                <button type="button" class="mode-btn active" data-mode="min">Min</button>
+                                <button type="button" class="mode-btn" data-mode="max">Max</button>
+                            </div>
+                        </div>
+                        <div class="slider-row">
+                            <input type="range" class="slider" min="0" max="15" step="1" value="0">
+                            <span class="slider-value">—</span>
                         </div>
                     </div>
 
@@ -96,7 +91,7 @@
 
                 <div class="actions">
                     <button type="submit" id="search-btn">Find Matches</button>
-                    <button type="reset" id="clear-btn">Clear</button>
+                    <button type="button" id="clear-btn">Clear All</button>
                 </div>
             </form>
 

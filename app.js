@@ -1,65 +1,120 @@
-const form = document.getElementById('macro-form');
-const resultsSection = document.getElementById('results');
-const resultsHeading = document.getElementById('results-heading');
-const resultsList = document.getElementById('results-list');
+// State: one entry per macro
+const macros = ['kcal', 'protein', 'carbs', 'fat', 'fibre'];
 
-form.addEventListener('submit', function (e) {
+const state = {};
+macros.forEach(m => {
+    state[m] = { mode: 'min', value: null };
+});
+
+// Wire up each filter card
+document.querySelectorAll('.filter-card').forEach(card => {
+    const macro = card.dataset.macro;
+    const slider = card.querySelector('.slider');
+    const valueLabel = card.querySelector('.slider-value');
+    const modeBtns = card.querySelectorAll('.mode-btn');
+
+    // Mode toggle
+    modeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            modeBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            state[macro].mode = btn.dataset.mode;
+        });
+    });
+
+    // Slider
+    slider.addEventListener('input', () => {
+        const val = parseInt(slider.value, 10);
+
+        if (val === parseInt(slider.min, 10)) {
+            // Back at zero — treat as "no filter"
+            state[macro].value = null;
+            valueLabel.textContent = '—';
+            card.classList.remove('active');
+        } else {
+            state[macro].value = val;
+            const unit = macro === 'kcal' ? ' kcal' : 'g';
+            valueLabel.textContent = val + unit;
+            card.classList.add('active');
+        }
+
+        updateSliderFill(slider);
+    });
+});
+
+function updateSliderFill(slider) {
+    const min = parseInt(slider.min, 10);
+    const max = parseInt(slider.max, 10);
+    const val = parseInt(slider.value, 10);
+    const pct = ((val - min) / (max - min)) * 100;
+    slider.style.setProperty('--fill', pct + '%');
+    slider.classList.add('fill-left');
+}
+
+// Form submit
+document.getElementById('macro-form').addEventListener('submit', e => {
     e.preventDefault();
     runSearch();
 });
 
-form.addEventListener('reset', function () {
-    resultsSection.hidden = true;
+// Clear
+document.getElementById('clear-btn').addEventListener('click', () => {
+    document.querySelectorAll('.filter-card').forEach(card => {
+        const macro = card.dataset.macro;
+        const slider = card.querySelector('.slider');
+        const valueLabel = card.querySelector('.slider-value');
+        const modeBtns = card.querySelectorAll('.mode-btn');
+
+        slider.value = slider.min;
+        valueLabel.textContent = '—';
+        card.classList.remove('active');
+        updateSliderFill(slider);
+
+        modeBtns.forEach((b, i) => b.classList.toggle('active', i === 0));
+        state[macro] = { mode: 'min', value: null };
+    });
+
+    document.getElementById('results').hidden = true;
 });
 
-function getNum(id) {
-    const val = document.getElementById(id).value.trim();
-    return val === '' ? null : parseFloat(val);
-}
-
-function inRange(value, min, max) {
-    if (min !== null && value < min) return false;
-    if (max !== null && value > max) return false;
-    return true;
-}
-
 function runSearch() {
-    const filters = {
-        kcal:    { min: getNum('kcal-min'),    max: getNum('kcal-max')    },
-        protein: { min: getNum('protein-min'), max: getNum('protein-max') },
-        carbs:   { min: getNum('carbs-min'),   max: getNum('carbs-max')   },
-        fat:     { min: getNum('fat-min'),     max: getNum('fat-max')     },
-        fibre:   { min: getNum('fibre-min'),   max: getNum('fibre-max')   },
-    };
-
-    const hasFilter = Object.values(filters).some(f => f.min !== null || f.max !== null);
+    const hasFilter = macros.some(m => state[m].value !== null);
     if (!hasFilter) {
-        showMessage('Enter at least one value to filter by.');
+        showMessage('Move at least one slider to filter.');
         return;
     }
 
-    const matches = menuData.filter(item =>
-        inRange(item.kcal,    filters.kcal.min,    filters.kcal.max)    &&
-        inRange(item.protein, filters.protein.min, filters.protein.max) &&
-        inRange(item.carbs,   filters.carbs.min,   filters.carbs.max)   &&
-        inRange(item.fat,     filters.fat.min,     filters.fat.max)     &&
-        inRange(item.fibre,   filters.fibre.min,   filters.fibre.max)
-    );
+    const matches = menuData.filter(item => {
+        return macros.every(m => {
+            const { mode, value } = state[m];
+            if (value === null) return true;
+            if (mode === 'min') return item[m] >= value;
+            if (mode === 'max') return item[m] <= value;
+            return true;
+        });
+    });
 
     renderResults(matches);
 }
 
 function renderResults(matches) {
+    const resultsList = document.getElementById('results-list');
+    const resultsHeading = document.getElementById('results-heading');
+    const resultsSection = document.getElementById('results');
+
     resultsList.innerHTML = '';
     resultsSection.hidden = false;
 
     if (matches.length === 0) {
         resultsHeading.textContent = 'No matches found';
-        resultsList.innerHTML = '<p class="no-results">Try widening your ranges.</p>';
+        resultsList.innerHTML = '<p class="no-results">Try adjusting your filters.</p>';
         return;
     }
 
     resultsHeading.textContent = `${matches.length} match${matches.length === 1 ? '' : 'es'} found`;
+
+    // Determine which macros are actively filtered (for highlighting)
+    const activeFilters = new Set(macros.filter(m => state[m].value !== null));
 
     // Group by chain
     const grouped = {};
@@ -76,37 +131,58 @@ function renderResults(matches) {
         heading.textContent = chain;
         group.appendChild(heading);
 
+        const itemsWrapper = document.createElement('div');
+        itemsWrapper.className = 'chain-items';
+
         for (const item of items) {
-            group.appendChild(buildResultCard(item));
+            itemsWrapper.appendChild(buildResultCard(item, activeFilters));
         }
 
+        group.appendChild(itemsWrapper);
         resultsList.appendChild(group);
     }
 }
 
-function buildResultCard(item) {
+function buildResultCard(item, activeFilters) {
     const card = document.createElement('div');
     card.className = 'result-item';
 
-    card.innerHTML = `
-        <div class="item-name">${item.item}</div>
-        <div class="macros">
-            ${macroPill(item.kcal, 'kcal')}
-            ${macroPill(item.protein + 'g', 'protein')}
-            ${macroPill(item.carbs + 'g', 'carbs')}
-            ${macroPill(item.fat + 'g', 'fat')}
-            ${macroPill(item.fibre + 'g', 'fibre')}
-        </div>
-    `;
+    const name = document.createElement('div');
+    name.className = 'item-name';
+    name.textContent = item.item;
+    card.appendChild(name);
 
+    const macroRow = document.createElement('div');
+    macroRow.className = 'macros';
+
+    const pillDefs = [
+        { key: 'kcal',    label: 'kcal',    format: v => v + ' kcal' },
+        { key: 'protein', label: 'protein',  format: v => v + 'g' },
+        { key: 'carbs',   label: 'carbs',    format: v => v + 'g' },
+        { key: 'fat',     label: 'fat',      format: v => v + 'g' },
+        { key: 'fibre',   label: 'fibre',    format: v => v + 'g' },
+    ];
+
+    for (const { key, label, format } of pillDefs) {
+        const pill = document.createElement('div');
+        pill.className = 'macro-pill' + (activeFilters.has(key) ? ' highlighted' : '');
+
+        pill.innerHTML = `
+            <span class="value">${format(item[key])}</span>
+            <span class="label">${label}</span>
+        `;
+        macroRow.appendChild(pill);
+    }
+
+    card.appendChild(macroRow);
     return card;
 }
 
-function macroPill(value, label) {
-    return `<div class="macro-pill"><span class="value">${value}</span><span class="label">${label}</span></div>`;
-}
-
 function showMessage(msg) {
+    const resultsList = document.getElementById('results-list');
+    const resultsHeading = document.getElementById('results-heading');
+    const resultsSection = document.getElementById('results');
+
     resultsList.innerHTML = `<p class="no-results">${msg}</p>`;
     resultsHeading.textContent = '';
     resultsSection.hidden = false;

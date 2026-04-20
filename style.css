@@ -61,10 +61,22 @@ header h1 {
     box-shadow: var(--shadow);
 }
 
+.filter-card.active {
+    border-color: var(--accent);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    gap: 8px;
+}
+
 .filter-card h2 {
     font-size: 1rem;
     font-weight: 600;
-    margin-bottom: 14px;
+    white-space: nowrap;
 }
 
 .filter-card h2 .unit {
@@ -73,56 +85,95 @@ header h1 {
     font-size: 0.875rem;
 }
 
-.range-inputs {
+/* Min/Max toggle */
+
+.mode-toggle {
     display: flex;
-    align-items: flex-end;
-    gap: 8px;
-}
-
-.range-inputs label {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    flex: 1;
-}
-
-.range-inputs label span {
-    font-size: 0.75rem;
-    color: var(--text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.range-inputs input {
-    width: 100%;
-    padding: 8px 10px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    font-size: 1rem;
-    color: var(--text);
     background: var(--bg);
-    transition: border-color 0.15s;
-    -moz-appearance: textfield;
-}
-
-.range-inputs input::-webkit-outer-spin-button,
-.range-inputs input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-}
-
-.range-inputs input:focus {
-    outline: none;
-    border-color: var(--accent);
-}
-
-.range-inputs input::placeholder {
-    color: #bbb;
-}
-
-.separator {
-    color: var(--text-secondary);
-    padding-bottom: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 2px;
     flex-shrink: 0;
+}
+
+.mode-btn {
+    padding: 3px 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: transparent;
+    color: var(--text-secondary);
+    transition: background 0.15s, color 0.15s;
+}
+
+.mode-btn.active {
+    background: var(--surface);
+    color: var(--accent);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Slider */
+
+.slider-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.slider {
+    flex: 1;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--border);
+    outline: none;
+    cursor: pointer;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    transition: transform 0.1s;
+}
+
+.slider::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+}
+
+.slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+
+.slider-value {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    min-width: 44px;
+    text-align: right;
+}
+
+.filter-card.active .slider-value {
+    color: var(--accent);
+}
+
+/* Fill the slider track up to the thumb */
+.slider.fill-left {
+    background: linear-gradient(to right, var(--accent) var(--fill), var(--border) var(--fill));
 }
 
 /* Actions */
@@ -140,7 +191,7 @@ button {
     font-weight: 600;
     cursor: pointer;
     border: none;
-    transition: background 0.15s, opacity 0.15s;
+    transition: background 0.15s;
 }
 
 #search-btn {
@@ -178,7 +229,7 @@ button {
 #results-list {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 20px;
 }
 
 .chain-group h3 {
@@ -188,6 +239,12 @@ button {
     letter-spacing: 0.08em;
     color: var(--text-secondary);
     margin-bottom: 8px;
+}
+
+.chain-items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .result-item {
@@ -207,7 +264,7 @@ button {
 .macros {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 8px;
 }
 
 .macro-pill {
@@ -216,20 +273,28 @@ button {
     align-items: center;
     background: var(--bg);
     border-radius: 8px;
-    padding: 6px 14px;
-    min-width: 60px;
+    padding: 6px 12px;
+    min-width: 54px;
 }
 
 .macro-pill .value {
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 0.95rem;
 }
 
 .macro-pill .label {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.05em;
+}
+
+.macro-pill.highlighted {
+    background: #ffeaec;
+}
+
+.macro-pill.highlighted .value {
+    color: var(--accent);
 }
 
 .no-results {
