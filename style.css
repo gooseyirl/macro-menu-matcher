@@ -114,6 +114,46 @@ header h1 {
     color: var(--accent);
 }
 
+/* Dietary filter row */
+
+.dietary-filter {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+}
+
+.dietary-filter .section-label {
+    margin-bottom: 10px;
+}
+
+#dietary-toggles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.chain-checkbox-label.gf-active {
+    background: #e8f5e9;
+    border-color: #4caf50;
+    color: #2e7d32;
+}
+
+.gf-disclaimer {
+    background: #fff8e1;
+    border: 1px solid #ffe082;
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    font-size: 0.85rem;
+    color: #5d4037;
+    margin-bottom: 16px;
+    line-height: 1.6;
+}
+
+.gf-disclaimer strong {
+    display: block;
+    margin-bottom: 4px;
+}
+
 /* Filter grid */
 
 .filters-grid {

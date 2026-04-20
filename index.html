@@ -11,7 +11,6 @@
         <header>
             <h1>Macro Menu Matcher</h1>
             <p class="subtitle">Set a minimum or maximum for each macro, then find fast food that fits.</p>
-            <a href="gluten-free.html" class="gf-link">View gluten-free options &#8594;</a>
         </header>
 
         <main>
@@ -21,6 +20,16 @@
                     <div id="chain-checkboxes">
                         <!-- populated by app.js -->
                     </div>
+                    <div class="dietary-filter">
+                        <h2 class="section-label">Dietary</h2>
+                        <div id="dietary-toggles">
+                            <button type="button" id="gf-toggle" class="chain-checkbox-label">Gluten Free</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="gf-disclaimer" class="gf-disclaimer" hidden>
+                    <strong>Not certified gluten-free</strong>
+                    Items listed are made without gluten-containing ingredients according to each chain's official allergen information. Cross-contamination from shared fryers, preparation surfaces, and utensils is possible. If you have coeliac disease or a severe gluten intolerance, contact the restaurant directly before ordering.
                 </div>
 
                 <div class="filters-grid">
@@ -138,6 +147,7 @@
     <script src="data.js"></script>
     <script src="filters.js"></script>
     <script src="app.js"></script>
+
     <script>document.getElementById('version-label').textContent = 'v' + VERSION;</script>
 </body>
 </html>

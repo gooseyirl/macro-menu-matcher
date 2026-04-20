@@ -28,6 +28,23 @@ chains.forEach(chain => {
     checkboxContainer.appendChild(label);
 });
 
+// ── Gluten Free toggle ────────────────────────────────────────────────────────
+
+const gfToggle = document.getElementById('gf-toggle');
+const gfDisclaimer = document.getElementById('gf-disclaimer');
+let gfActive = false;
+
+gfToggle.addEventListener('click', () => {
+    gfActive = !gfActive;
+    gfToggle.classList.toggle('gf-active', gfActive);
+    gfDisclaimer.hidden = !gfActive;
+    setGlutenFree(gfActive);
+    if (gfActive) {
+        const matches = applyFilters(menuData.filter(item => enabledChains.has(item.chain)));
+        renderResults(matches);
+    }
+});
+
 // ── Filters ───────────────────────────────────────────────────────────────────
 
 initFilters(
@@ -45,6 +62,9 @@ initFilters(
             input.closest('label').classList.add('checked');
             enabledChains.add(input.value);
         });
+        gfActive = false;
+        gfToggle.classList.remove('gf-active');
+        gfDisclaimer.hidden = true;
         document.getElementById('results').hidden = true;
     }
 );

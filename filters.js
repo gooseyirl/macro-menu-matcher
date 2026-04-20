@@ -1,4 +1,4 @@
-// filters.js — shared macro filter logic used by both pages.
+// filters.js — shared macro filter logic.
 
 const macros = ['kcal', 'protein', 'carbs', 'fat', 'fibre'];
 
@@ -7,11 +7,22 @@ macros.forEach(m => {
     filterState[m] = { mode: 'max', value: null };
 });
 
+let glutenFreeOnly = false;
+
+function isAnyFilterActive() {
+    return glutenFreeOnly || macros.some(m => filterState[m].value !== null);
+}
+
+function setGlutenFree(val) {
+    glutenFreeOnly = val;
+    document.getElementById('search-btn').disabled = !isAnyFilterActive();
+}
+
 function initFilters(onSearch, onClear) {
     const searchBtn = document.getElementById('search-btn');
 
     function updateSearchBtn() {
-        searchBtn.disabled = !macros.some(m => filterState[m].value !== null);
+        searchBtn.disabled = !isAnyFilterActive();
     }
 
     function updateSliderFill(slider) {
@@ -57,6 +68,8 @@ function initFilters(onSearch, onClear) {
 
     // Clear
     document.getElementById('clear-btn').addEventListener('click', () => {
+        glutenFreeOnly = false;
+
         document.querySelectorAll('.filter-card').forEach(card => {
             const macro = card.dataset.macro;
             const slider = card.querySelector('.slider');
@@ -80,7 +93,8 @@ function initFilters(onSearch, onClear) {
 }
 
 function applyFilters(items) {
-    return items.filter(item =>
+    let filtered = glutenFreeOnly ? items.filter(i => i.glutenFree) : items;
+    return filtered.filter(item =>
         macros.every(m => {
             const { mode, value } = filterState[m];
             if (value === null) return true;
@@ -92,3 +106,4 @@ function applyFilters(items) {
 function activeFilterKeys() {
     return new Set(macros.filter(m => filterState[m].value !== null));
 }
+
