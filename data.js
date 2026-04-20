@@ -81,6 +81,58 @@ const menuData = [
     { chain: "Five Guys", item: "Little Cheeseburger (bunless)",kcal: 302, protein: 20, carbs: 4,  fat: 23, fibre: 0,  glutenFree: true  },
     { chain: "Five Guys", item: "Hotdog (bunless)",            kcal: 320, protein: 14, carbs: 2,  fat: 28, fibre: 0,  glutenFree: true  },
 
+    // ── Nando's ──────────────────────────────────────────────────────────────
+    // Source: https://www.nandos.ie/food/nutrition
+    // Chicken served plain (no sauce adds negligible macros).
+    { chain: "Nando's", item: "1/4 Chicken Breast",            kcal: 249, protein: 34, carbs: 1,  fat: 12, fibre: 0,  glutenFree: true  },
+    { chain: "Nando's", item: "1/2 Chicken",                   kcal: 497, protein: 68, carbs: 2,  fat: 24, fibre: 0,  glutenFree: true  },
+    { chain: "Nando's", item: "Chicken Butterfly",             kcal: 356, protein: 54, carbs: 2,  fat: 15, fibre: 0,  glutenFree: true  },
+    { chain: "Nando's", item: "Chicken Breast Fillet Burger",  kcal: 484, protein: 42, carbs: 44, fat: 14, fibre: 2,  glutenFree: false },
+    { chain: "Nando's", item: "Fino Pitta",                    kcal: 521, protein: 40, carbs: 51, fat: 16, fibre: 3,  glutenFree: false },
+    { chain: "Nando's", item: "Regular PERi-PERi Chips",       kcal: 390, protein: 6,  carbs: 53, fat: 17, fibre: 5,  glutenFree: true  },
+    { chain: "Nando's", item: "Macho Peas",                    kcal: 174, protein: 10, carbs: 17, fat: 6,  fibre: 6,  glutenFree: true  },
+    { chain: "Nando's", item: "Coleslaw",                      kcal: 187, protein: 1,  carbs: 11, fat: 15, fibre: 2,  glutenFree: true  },
+    { chain: "Nando's", item: "Corn on the Cob",               kcal: 168, protein: 5,  carbs: 27, fat: 5,  fibre: 3,  glutenFree: true  },
+
+    // ── Shake Shack ──────────────────────────────────────────────────────────
+    // Source: https://www.shakeshack.com/nutrition/ (EU menu, Dublin locations)
+    { chain: "Shake Shack", item: "ShackBurger",               kcal: 460, protein: 22, carbs: 29, fat: 29, fibre: 1,  glutenFree: false },
+    { chain: "Shake Shack", item: "SmokeShack",                kcal: 590, protein: 30, carbs: 30, fat: 39, fibre: 1,  glutenFree: false },
+    { chain: "Shake Shack", item: "'Shroom Burger",            kcal: 490, protein: 22, carbs: 44, fat: 26, fibre: 3,  glutenFree: false },
+    { chain: "Shake Shack", item: "Chicken Shack",             kcal: 470, protein: 30, carbs: 44, fat: 19, fibre: 2,  glutenFree: false },
+    { chain: "Shake Shack", item: "Chick'n Bites (6pc)",       kcal: 340, protein: 21, carbs: 24, fat: 17, fibre: 1,  glutenFree: false },
+    { chain: "Shake Shack", item: "Crinkle Cut Fries",         kcal: 440, protein: 7,  carbs: 59, fat: 20, fibre: 5,  glutenFree: true  },
+    { chain: "Shake Shack", item: "Chocolate Shake",           kcal: 640, protein: 14, carbs: 88, fat: 27, fibre: 1,  glutenFree: false },
+
+    // ── Supermac's ──────────────────────────────────────────────────────────
+    // Source: https://www.supermacs.ie/nutrition/
+    { chain: "Supermac's", item: "Supermac's Burger",          kcal: 552, protein: 28, carbs: 47, fat: 27, fibre: 3,  glutenFree: false },
+    { chain: "Supermac's", item: "Chicken Fillet Burger",      kcal: 497, protein: 31, carbs: 49, fat: 19, fibre: 3,  glutenFree: false },
+    { chain: "Supermac's", item: "Taco Fries",                 kcal: 610, protein: 22, carbs: 68, fat: 28, fibre: 5,  glutenFree: false },
+    { chain: "Supermac's", item: "Regular Chips",              kcal: 320, protein: 5,  carbs: 45, fat: 14, fibre: 4,  glutenFree: true  },
+    { chain: "Supermac's", item: "Snack Box",                  kcal: 730, protein: 35, carbs: 70, fat: 34, fibre: 4,  glutenFree: false },
+    { chain: "Supermac's", item: "Quarter Pounder",            kcal: 487, protein: 27, carbs: 38, fat: 24, fibre: 2,  glutenFree: false },
+
+    // ── Leon ────────────────────────────────────────────────────────────────
+    // Source: https://leon.co/nutrition/ (IE locations same menu as UK)
+    { chain: "Leon", item: "Chicken Caesar Wrap",              kcal: 422, protein: 32, carbs: 38, fat: 14, fibre: 4,  glutenFree: false },
+    { chain: "Leon", item: "Classic Falafel Wrap",             kcal: 480, protein: 16, carbs: 62, fat: 18, fibre: 8,  glutenFree: false },
+    { chain: "Leon", item: "Grilled Chicken Rice Box",         kcal: 460, protein: 38, carbs: 52, fat: 10, fibre: 4,  glutenFree: true  },
+    { chain: "Leon", item: "Falafel Rice Box",                 kcal: 490, protein: 14, carbs: 70, fat: 16, fibre: 9,  glutenFree: true  },
+    { chain: "Leon", item: "Sweet Potato Fries",               kcal: 290, protein: 4,  carbs: 42, fat: 12, fibre: 5,  glutenFree: true  },
+    { chain: "Leon", item: "Superfood Salad",                  kcal: 310, protein: 12, carbs: 28, fat: 16, fibre: 7,  glutenFree: true  },
+
+    // ── Pret a Manger ────────────────────────────────────────────────────────
+    // Source: https://www.pret.com/en-IE/nutritional-information
+    { chain: "Pret a Manger", item: "Classic Super Club",      kcal: 430, protein: 30, carbs: 38, fat: 16, fibre: 4,  glutenFree: false },
+    { chain: "Pret a Manger", item: "Chicken Caesar Baguette", kcal: 476, protein: 32, carbs: 52, fat: 15, fibre: 3,  glutenFree: false },
+    { chain: "Pret a Manger", item: "Tuna & Cucumber Baguette",kcal: 390, protein: 24, carbs: 51, fat: 9,  fibre: 3,  glutenFree: false },
+    { chain: "Pret a Manger", item: "Hummus & Falafel Wrap",   kcal: 436, protein: 14, carbs: 56, fat: 17, fibre: 8,  glutenFree: false },
+    { chain: "Pret a Manger", item: "Egg & Crayfish Roll",     kcal: 328, protein: 19, carbs: 34, fat: 11, fibre: 2,  glutenFree: false },
+    { chain: "Pret a Manger", item: "Porridge with Honey",     kcal: 319, protein: 9,  carbs: 55, fat: 7,  fibre: 4,  glutenFree: false },
+    { chain: "Pret a Manger", item: "Chicken & Avocado Salad", kcal: 298, protein: 27, carbs: 10, fat: 17, fibre: 4,  glutenFree: true  },
+    { chain: "Pret a Manger", item: "Green Goddess Salad",     kcal: 214, protein: 8,  carbs: 18, fat: 12, fibre: 6,  glutenFree: true  },
+
     // ── Domino's ────────────────────────────────────────────────────────────
     // Source: https://www.dominos.ie/pages/nutrition
     // Per slice (1/8 of a large pizza)
