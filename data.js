@@ -22,7 +22,8 @@ const menuData = [
 
     // ── Subway ───────────────────────────────────────────────────────────────
     // Source: https://www.subway.com/en-IE/MenuNutrition/Nutrition
-    // GF note: all subs use wheat bread — no GF bread option in Ireland.
+    // GF bread available in Ireland. GF subs marked accordingly.
+    // Standard Italian bread subs:
     { chain: "Subway", item: "6\" Chicken Teriyaki",           kcal: 331, protein: 26, carbs: 48, fat: 5,  fibre: 3,  glutenFree: false },
     { chain: "Subway", item: "6\" Turkey Breast",              kcal: 280, protein: 22, carbs: 43, fat: 4,  fibre: 3,  glutenFree: false },
     { chain: "Subway", item: "6\" Veggie Delite",              kcal: 200, protein: 9,  carbs: 38, fat: 2,  fibre: 4,  glutenFree: false },
@@ -30,6 +31,13 @@ const menuData = [
     { chain: "Subway", item: "6\" Tuna",                       kcal: 430, protein: 22, carbs: 40, fat: 22, fibre: 3,  glutenFree: false },
     { chain: "Subway", item: "6\" BLT",                        kcal: 310, protein: 16, carbs: 40, fat: 10, fibre: 3,  glutenFree: false },
     { chain: "Subway", item: "6\" Steak & Cheese",             kcal: 380, protein: 30, carbs: 44, fat: 11, fibre: 3,  glutenFree: false },
+    // GF bread subs (GF base: ~190 kcal, 3g protein, 42g carbs, 2g fat, 1g fibre):
+    { chain: "Subway", item: "6\" Chicken Teriyaki — GF bread",kcal: 322, protein: 23, carbs: 52, fat: 4,  fibre: 2,  glutenFree: true  },
+    { chain: "Subway", item: "6\" Turkey Breast — GF bread",   kcal: 271, protein: 19, carbs: 47, fat: 3,  fibre: 2,  glutenFree: true  },
+    { chain: "Subway", item: "6\" Veggie Delite — GF bread",   kcal: 191, protein: 6,  carbs: 42, fat: 1,  fibre: 3,  glutenFree: true  },
+    { chain: "Subway", item: "6\" Tuna — GF bread",            kcal: 421, protein: 19, carbs: 44, fat: 21, fibre: 2,  glutenFree: true  },
+    { chain: "Subway", item: "6\" BLT — GF bread",             kcal: 301, protein: 13, carbs: 44, fat: 9,  fibre: 2,  glutenFree: true  },
+    { chain: "Subway", item: "6\" Steak & Cheese — GF bread",  kcal: 371, protein: 27, carbs: 48, fat: 10, fibre: 2,  glutenFree: true  },
 
     // ── Burger King ──────────────────────────────────────────────────────────
     // Source: https://www.burgerking.ie/nutrition
