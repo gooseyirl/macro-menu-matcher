@@ -12,6 +12,7 @@ document.querySelectorAll('.filter-card').forEach(card => {
     const slider = card.querySelector('.slider');
     const valueLabel = card.querySelector('.slider-value');
     const modeBtns = card.querySelectorAll('.mode-btn');
+    const unit = macro === 'kcal' ? ' kcal' : 'g';
 
     // Mode toggle
     modeBtns.forEach(btn => {
@@ -25,21 +26,16 @@ document.querySelectorAll('.filter-card').forEach(card => {
     // Slider
     slider.addEventListener('input', () => {
         const val = parseInt(slider.value, 10);
+        const atMin = val === parseInt(slider.min, 10);
 
-        if (val === parseInt(slider.min, 10)) {
-            // Back at zero — treat as "no filter"
-            state[macro].value = null;
-            valueLabel.textContent = '—';
-            card.classList.remove('active');
-        } else {
-            state[macro].value = val;
-            const unit = macro === 'kcal' ? ' kcal' : 'g';
-            valueLabel.textContent = val + unit;
-            card.classList.add('active');
-        }
-
+        state[macro].value = atMin ? null : val;
+        valueLabel.textContent = val + unit;
+        card.classList.toggle('active', !atMin);
         updateSliderFill(slider);
     });
+
+    // Initialise fill on load
+    updateSliderFill(slider);
 });
 
 function updateSliderFill(slider) {
@@ -65,8 +61,9 @@ document.getElementById('clear-btn').addEventListener('click', () => {
         const valueLabel = card.querySelector('.slider-value');
         const modeBtns = card.querySelectorAll('.mode-btn');
 
+        const unit = macro === 'kcal' ? ' kcal' : 'g';
         slider.value = slider.min;
-        valueLabel.textContent = '—';
+        valueLabel.textContent = '0' + unit;
         card.classList.remove('active');
         updateSliderFill(slider);
 
