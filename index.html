@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Macro Menu Matcher</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Macro Menu Matcher</h1>
+            <p class="subtitle">Enter your nutrition targets and find fast food that fits.</p>
+        </header>
+
+        <main>
+            <form id="macro-form">
+                <div class="filters-grid">
+
+                    <div class="filter-card">
+                        <h2>Calories <span class="unit">kcal</span></h2>
+                        <div class="range-inputs">
+                            <label>
+                                <span>Min</span>
+                                <input type="number" id="kcal-min" min="0" max="5000" placeholder="e.g. 400">
+                            </label>
+                            <span class="separator">–</span>
+                            <label>
+                                <span>Max</span>
+                                <input type="number" id="kcal-max" min="0" max="5000" placeholder="e.g. 700">
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-card">
+                        <h2>Protein <span class="unit">g</span></h2>
+                        <div class="range-inputs">
+                            <label>
+                                <span>Min</span>
+                                <input type="number" id="protein-min" min="0" max="200" placeholder="e.g. 30">
+                            </label>
+                            <span class="separator">–</span>
+                            <label>
+                                <span>Max</span>
+                                <input type="number" id="protein-max" min="0" max="200" placeholder="">
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-card">
+                        <h2>Carbohydrates <span class="unit">g</span></h2>
+                        <div class="range-inputs">
+                            <label>
+                                <span>Min</span>
+                                <input type="number" id="carbs-min" min="0" max="500" placeholder="">
+                            </label>
+                            <span class="separator">–</span>
+                            <label>
+                                <span>Max</span>
+                                <input type="number" id="carbs-max" min="0" max="500" placeholder="e.g. 60">
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-card">
+                        <h2>Fat <span class="unit">g</span></h2>
+                        <div class="range-inputs">
+                            <label>
+                                <span>Min</span>
+                                <input type="number" id="fat-min" min="0" max="200" placeholder="">
+                            </label>
+                            <span class="separator">–</span>
+                            <label>
+                                <span>Max</span>
+                                <input type="number" id="fat-max" min="0" max="200" placeholder="e.g. 25">
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-card">
+                        <h2>Fibre <span class="unit">g</span></h2>
+                        <div class="range-inputs">
+                            <label>
+                                <span>Min</span>
+                                <input type="number" id="fibre-min" min="0" max="100" placeholder="e.g. 5">
+                            </label>
+                            <span class="separator">–</span>
+                            <label>
+                                <span>Max</span>
+                                <input type="number" id="fibre-max" min="0" max="100" placeholder="">
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="actions">
+                    <button type="submit" id="search-btn">Find Matches</button>
+                    <button type="reset" id="clear-btn">Clear</button>
+                </div>
+            </form>
+
+            <section id="results" hidden>
+                <h2 id="results-heading"></h2>
+                <div id="results-list"></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
