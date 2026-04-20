@@ -110,6 +110,107 @@
                 All items listed here are made without gluten-containing ingredients according to each chain's official allergen information. However, none of these restaurants operate dedicated gluten-free kitchens — cross-contamination from shared fryers, preparation surfaces, and utensils is possible. Subway's GF bread is prepared in the same kitchen as wheat bread. If you have coeliac disease or a severe gluten intolerance, contact the restaurant directly before ordering.
             </div>
 
+            <form id="macro-form">
+                <div class="filters-grid">
+
+                    <div class="filter-card" data-macro="kcal">
+                        <div class="card-header">
+                            <h2>Calories <span class="unit">kcal</span></h2>
+                            <div class="mode-toggle">
+                                <button type="button" class="mode-btn" data-mode="min">Min</button>
+                                <button type="button" class="mode-btn active" data-mode="max">Max</button>
+                            </div>
+                        </div>
+                        <div class="slider-row">
+                            <input type="range" class="slider" min="0" max="4000" step="50" value="0">
+                        </div>
+                        <div class="slider-value-row">
+                            <span class="slider-min-label">0</span>
+                            <span class="slider-value">0 kcal</span>
+                            <span class="slider-max-label">4000</span>
+                        </div>
+                    </div>
+
+                    <div class="filter-card" data-macro="protein">
+                        <div class="card-header">
+                            <h2>Protein <span class="unit">g</span></h2>
+                            <div class="mode-toggle">
+                                <button type="button" class="mode-btn" data-mode="min">Min</button>
+                                <button type="button" class="mode-btn active" data-mode="max">Max</button>
+                            </div>
+                        </div>
+                        <div class="slider-row">
+                            <input type="range" class="slider" min="0" max="300" step="5" value="0">
+                        </div>
+                        <div class="slider-value-row">
+                            <span class="slider-min-label">0</span>
+                            <span class="slider-value">0g</span>
+                            <span class="slider-max-label">300</span>
+                        </div>
+                    </div>
+
+                    <div class="filter-card" data-macro="carbs">
+                        <div class="card-header">
+                            <h2>Carbohydrates <span class="unit">g</span></h2>
+                            <div class="mode-toggle">
+                                <button type="button" class="mode-btn" data-mode="min">Min</button>
+                                <button type="button" class="mode-btn active" data-mode="max">Max</button>
+                            </div>
+                        </div>
+                        <div class="slider-row">
+                            <input type="range" class="slider" min="0" max="500" step="10" value="0">
+                        </div>
+                        <div class="slider-value-row">
+                            <span class="slider-min-label">0</span>
+                            <span class="slider-value">0g</span>
+                            <span class="slider-max-label">500</span>
+                        </div>
+                    </div>
+
+                    <div class="filter-card" data-macro="fat">
+                        <div class="card-header">
+                            <h2>Fat <span class="unit">g</span></h2>
+                            <div class="mode-toggle">
+                                <button type="button" class="mode-btn" data-mode="min">Min</button>
+                                <button type="button" class="mode-btn active" data-mode="max">Max</button>
+                            </div>
+                        </div>
+                        <div class="slider-row">
+                            <input type="range" class="slider" min="0" max="200" step="5" value="0">
+                        </div>
+                        <div class="slider-value-row">
+                            <span class="slider-min-label">0</span>
+                            <span class="slider-value">0g</span>
+                            <span class="slider-max-label">200</span>
+                        </div>
+                    </div>
+
+                    <div class="filter-card" data-macro="fibre">
+                        <div class="card-header">
+                            <h2>Fibre <span class="unit">g</span></h2>
+                            <div class="mode-toggle">
+                                <button type="button" class="mode-btn" data-mode="min">Min</button>
+                                <button type="button" class="mode-btn active" data-mode="max">Max</button>
+                            </div>
+                        </div>
+                        <div class="slider-row">
+                            <input type="range" class="slider" min="0" max="60" step="1" value="0">
+                        </div>
+                        <div class="slider-value-row">
+                            <span class="slider-min-label">0</span>
+                            <span class="slider-value">0g</span>
+                            <span class="slider-max-label">60</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="actions">
+                    <button type="submit" id="search-btn" disabled>Filter Results</button>
+                    <button type="button" id="clear-btn">Clear</button>
+                </div>
+            </form>
+
             <div id="gf-content">
                 <!-- populated by gluten-free.js -->
             </div>
@@ -122,6 +223,7 @@
 
     <script src="version.js"></script>
     <script src="data.js"></script>
+    <script src="filters.js"></script>
     <script src="gluten-free.js"></script>
     <script>document.getElementById('version-label').textContent = 'v' + VERSION;</script>
 </body>
