@@ -45,6 +45,19 @@ header h1 {
     margin-top: 6px;
 }
 
+.gf-link {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.gf-link:hover {
+    text-decoration: underline;
+}
+
 /* Restaurant filter */
 
 .section-label {

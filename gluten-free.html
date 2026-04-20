@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gluten-Free Options — Macro Menu Matcher</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .gf-disclaimer {
+            background: #fff8e1;
+            border: 1px solid #ffe082;
+            border-radius: var(--radius);
+            padding: 14px 18px;
+            font-size: 0.85rem;
+            color: #5d4037;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .gf-disclaimer strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .gf-chain-section {
+            margin-bottom: 32px;
+        }
+
+        .gf-chain-heading {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .gf-items {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .gf-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 14px 18px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .gf-item-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            flex: 1;
+            min-width: 160px;
+        }
+
+        .gf-badge {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            background: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #a5d6a7;
+            border-radius: 4px;
+            padding: 2px 7px;
+            white-space: nowrap;
+        }
+
+        .no-gf {
+            color: var(--text-secondary);
+            font-style: italic;
+            padding: 8px 0;
+            font-size: 0.9rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">&#8592; Back to Macro Matcher</a>
+
+        <header>
+            <h1>Gluten-Free Options</h1>
+            <p class="subtitle">Items made without gluten-containing ingredients, by restaurant.</p>
+        </header>
+
+        <main>
+            <div class="gf-disclaimer">
+                <strong>⚠ Important: Not certified gluten-free</strong>
+                All items listed here are made without gluten-containing ingredients according to each chain's official allergen information. However, none of these restaurants operate dedicated gluten-free kitchens. Cross-contamination from shared fryers, preparation surfaces, and utensils is possible. If you have coeliac disease or a severe gluten intolerance, contact the restaurant directly before ordering.
+            </div>
+
+            <div id="gf-content">
+                <!-- populated by gluten-free.js -->
+            </div>
+        </main>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="gluten-free.js"></script>
+</body>
+</html>

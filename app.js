@@ -3,7 +3,7 @@ const macros = ['kcal', 'protein', 'carbs', 'fat', 'fibre'];
 
 const state = {};
 macros.forEach(m => {
-    state[m] = { mode: 'min', value: null };
+    state[m] = { mode: 'max', value: null };
 });
 
 // ── Chain checkboxes (all checked by default) ────────────────────────────────
@@ -107,8 +107,8 @@ document.getElementById('clear-btn').addEventListener('click', () => {
         card.classList.remove('active');
         updateSliderFill(slider);
 
-        modeBtns.forEach((b, i) => b.classList.toggle('active', i === 0));
-        state[macro] = { mode: 'min', value: null };
+        modeBtns.forEach((b, i) => b.classList.toggle('active', i === 1));
+        state[macro] = { mode: 'max', value: null };
     });
 
     // Re-check all chains
