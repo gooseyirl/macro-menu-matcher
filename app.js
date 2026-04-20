@@ -6,6 +6,38 @@ macros.forEach(m => {
     state[m] = { mode: 'min', value: null };
 });
 
+// ── Chain checkboxes (all checked by default) ────────────────────────────────
+
+const chains = [...new Set(menuData.map(item => item.chain))].sort();
+const enabledChains = new Set(chains);
+
+const checkboxContainer = document.getElementById('chain-checkboxes');
+chains.forEach(chain => {
+    const label = document.createElement('label');
+    label.className = 'chain-checkbox-label checked';
+
+    const input = document.createElement('input');
+    input.type = 'checkbox';
+    input.checked = true;
+    input.value = chain;
+
+    input.addEventListener('change', () => {
+        if (input.checked) {
+            enabledChains.add(chain);
+            label.classList.add('checked');
+        } else {
+            enabledChains.delete(chain);
+            label.classList.remove('checked');
+        }
+    });
+
+    label.appendChild(input);
+    label.appendChild(document.createTextNode(chain));
+    checkboxContainer.appendChild(label);
+});
+
+// ── Search button ────────────────────────────────────────────────────────────
+
 const searchBtn = document.getElementById('search-btn');
 
 function updateSearchBtn() {
@@ -79,6 +111,13 @@ document.getElementById('clear-btn').addEventListener('click', () => {
         state[macro] = { mode: 'min', value: null };
     });
 
+    // Re-check all chains
+    checkboxContainer.querySelectorAll('input[type="checkbox"]').forEach(input => {
+        input.checked = true;
+        input.closest('label').classList.add('checked');
+        enabledChains.add(input.value);
+    });
+
     document.getElementById('results').hidden = true;
     updateSearchBtn();
 });
@@ -91,6 +130,7 @@ function runSearch() {
     }
 
     const matches = menuData.filter(item => {
+        if (!enabledChains.has(item.chain)) return false;
         return macros.every(m => {
             const { mode, value } = state[m];
             if (value === null) return true;
