@@ -6,6 +6,13 @@ macros.forEach(m => {
     state[m] = { mode: 'min', value: null };
 });
 
+const searchBtn = document.getElementById('search-btn');
+
+function updateSearchBtn() {
+    const hasFilter = macros.some(m => state[m].value !== null);
+    searchBtn.disabled = !hasFilter;
+}
+
 // Wire up each filter card
 document.querySelectorAll('.filter-card').forEach(card => {
     const macro = card.dataset.macro;
@@ -32,6 +39,7 @@ document.querySelectorAll('.filter-card').forEach(card => {
         valueLabel.textContent = val + unit;
         card.classList.toggle('active', !atMin);
         updateSliderFill(slider);
+        updateSearchBtn();
     });
 
     // Initialise fill on load
@@ -72,6 +80,7 @@ document.getElementById('clear-btn').addEventListener('click', () => {
     });
 
     document.getElementById('results').hidden = true;
+    updateSearchBtn();
 });
 
 function runSearch() {
