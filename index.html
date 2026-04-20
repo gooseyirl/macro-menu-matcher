@@ -130,7 +130,13 @@
         </main>
     </div>
 
+    <footer class="site-footer">
+        <span id="version-label"></span>
+    </footer>
+
+    <script src="version.js"></script>
     <script src="data.js"></script>
     <script src="app.js"></script>
+    <script>document.getElementById('version-label').textContent = 'v' + VERSION;</script>
 </body>
 </html>
